@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PV Colab Digital Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  /* Layout: one centred mobile column on a blueprint grid, logo medallion above three stacked link slabs, footer strip pinned to the bottom. */
+  :root {
+    --ink: #101010;
+    --paper: #EFEFEF;
+    --grey: #555555;
+    --grid: rgba(16, 16, 16, 0.07);
+    --shadow: 6px 6px 0 var(--ink);
+    --shadow-soft: 3px 3px 0 var(--ink);
+    --font-main: "Space Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { min-height: 100%; }
+  body {
+    font-family: var(--font-main);
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 36px 36px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  main {
+    flex: 1;
+    width: min(420px, 100%);
+    margin: 0 auto;
+    padding: 56px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+  }
+
+  .spark { position: absolute; width: 16px; height: 16px; opacity: 0.22; }
+  .spark.s1 { top: 36px; left: 18px; }
+  .spark.s2 { top: 150px; right: 26px; width: 12px; height: 12px; }
+  .spark.s3 { bottom: 120px; left: 22px; width: 14px; height: 14px; }
+
+  .mark {
+    width: 104px; height: 104px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    line-height: 1;
+  }
+  .mark .pv { font-weight: 700; font-size: 50px; letter-spacing: -4px; padding-right: 4px; }
+  .mark .colab { font-family: var(--font-mono); font-weight: 700; font-size: 10px; letter-spacing: 3px; padding-left: 3px; margin-top: 2px; }
+
+  h1 {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 18px;
+  }
+
+  .links { width: 100%; display: flex; flex-direction: column; gap: 18px; }
+  .slab {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    width: 100%;
+    padding: 16px 18px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .slab:hover, .slab:focus-visible { transform: translate(-2px, -2px); box-shadow: var(--shadow); }
+  .slab:active { transform: translate(0, 0); box-shadow: none; }
+  .slab:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+  .slab.solid { background: var(--ink); color: var(--paper); }
+  .slab .txt { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  .slab .lab { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; opacity: 0.65; }
+  .slab .val { font-weight: 700; font-size: 18px; letter-spacing: -0.2px; overflow-wrap: anywhere; }
+  .slab .arr { font-family: var(--font-mono); font-weight: 700; font-size: 20px; flex: none; }
+
+  footer {
+    border-top: 2px solid var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 20px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slab { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <main>
+    <svg class="spark s1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="#101010"/></svg>
+    <svg class="spark s2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="#101010"/></svg>
+    <svg class="spark s3" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="#101010"/></svg>
+
+    <div class="mark" role="img" aria-label="PV Colab logo">
+      <span class="pv">PV</span>
+      <span class="colab">COLAB</span>
+    </div>
+    <h1>Digital Solutions</h1>
+    <p class="tag">Design · Build · Automate</p>
+
+    <nav class="links" aria-label="Contact PV Colab">
+      <a class="slab solid" href="https://pvcolab.com/">
+        <span class="txt"><span class="lab">Website</span><span class="val">pvcolab.com</span></span>
+        <span class="arr" aria-hidden="true">→</span>
+      </a>
+      <a class="slab" href="https://wa.me/919618227556">
+        <span class="txt"><span class="lab">WhatsApp</span><span class="val">+91 96182 27556</span></span>
+        <span class="arr" aria-hidden="true">→</span>
+      </a>
+      <a class="slab" href="mailto:hello@pvcolab.com">
+        <span class="txt"><span class="lab">Email</span><span class="val">hello@pvcolab.com</span></span>
+        <span class="arr" aria-hidden="true">→</span>
+      </a>
+    </nav>
+  </main>
+  <footer>Andhra Pradesh, India</footer>
+</body>
+</html>
